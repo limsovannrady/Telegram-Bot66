@@ -5,7 +5,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
-PORT = int(os.environ.get("BOT_PORT", 3001))
+PORT = int(os.environ.get("PORT", 8000))
 
 users = {}
 

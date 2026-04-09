@@ -15,17 +15,7 @@ paths = [ "/" ]
 localPort = 8000
 
 [services.development]
-run = "pnpm --filter @workspace/username-checker run dev"
-
-[services.production]
-build = [ "pnpm", "--filter", "@workspace/username-checker", "run", "build" ]
-publicDir = "artifacts/username-checker/dist/public"
-serve = "static"
-
-[[services.production.rewrites]]
-from = "/*"
-to = "/index.html"
+run = "cd /home/runner/workspace && python3 app.py"
 
 [services.env]
-PORT = "19396"
-BASE_PATH = "/"
+PORT = "8000"
