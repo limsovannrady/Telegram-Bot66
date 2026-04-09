@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/"
-title = "Telegram Username Checker"
+title = "Telegram Bot Dashboard"
 version = "1.0.0"
 id = "artifacts/username-checker"
 router = "path"
@@ -12,7 +12,7 @@ version = "1.0.0"
 [[services]]
 name = "web"
 paths = [ "/" ]
-localPort = 19396
+localPort = 8000
 
 [services.development]
 run = "pnpm --filter @workspace/username-checker run dev"
