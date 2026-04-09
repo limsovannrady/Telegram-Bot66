@@ -1,58 +1,44 @@
-# Telegram Bot (Webhook for Vercel)
+# Telegram Bot
 
 ## Overview
 
-Python-based Telegram bot designed to be deployed on Vercel as a serverless webhook.
+Python-based Telegram bot running on Replit using long polling.
 
 ## Stack
 
-- **Language**: Python 3.12
-- **Library**: python-telegram-bot >= 22.7
-- **Deployment**: Vercel (serverless functions)
-- **Mode**: Webhook (not polling)
+- **Language**: Python 3.11+
+- **Library**: python-telegram-bot == 22.7
+- **Mode**: Long polling (runs continuously on Replit)
 
 ## Project Structure
 
 ```
+├── bot.py               # Main entry point — runs the bot with long polling
 ├── api/
-│   └── webhook.py       # Vercel serverless function — handles incoming Telegram updates
-├── bot.py               # Local development only (long polling)
-├── setup_webhook.py     # Run once after deploy to register webhook URL with Telegram
-├── vercel.json          # Vercel deployment configuration
-├── requirements.txt     # Python dependencies for Vercel
-└── pyproject.toml       # Python project config (for local/Replit use)
+│   └── webhook.py       # Legacy Vercel webhook handler (not used on Replit)
+├── setup_webhook.py     # Utility to register webhook URL (not needed for polling mode)
+├── requirements.txt     # Python dependencies
+└── pyproject.toml       # Python project config
 ```
 
-## Environment Variables
+## Environment Variables / Secrets
 
-| Variable            | Description                        |
-|---------------------|------------------------------------|
-| `TELEGRAM_BOT_TOKEN`| Your Telegram bot token from @BotFather |
+| Variable             | Description                                 |
+|----------------------|---------------------------------------------|
+| `TELEGRAM_BOT_TOKEN` | Your Telegram bot token from @BotFather     |
 
-## Deployment Steps (Vercel)
+Set this via the Replit Secrets tab (the padlock icon in the sidebar).
 
-1. Push code to GitHub
-2. Import project in Vercel dashboard
-3. Add `TELEGRAM_BOT_TOKEN` as an Environment Variable in Vercel
-4. Deploy
-5. After deployment, run `setup_webhook.py` to register the webhook:
+## Running the Bot
+
+The bot runs automatically via the "Telegram Bot" workflow, which executes:
 
 ```bash
-TELEGRAM_BOT_TOKEN=<token> VERCEL_URL=<your-domain.vercel.app> python setup_webhook.py
+python3 bot.py
 ```
 
-## Local Development
+It will connect to Telegram and respond to the `/start` command with a greeting in Khmer.
 
-Use `bot.py` with long polling for local testing:
+## Bot Commands
 
-```bash
-python bot.py
-```
-
-## Webhook Endpoint
-
-```
-POST https://<your-domain>.vercel.app/api/webhook
-```
-
-Telegram will send all bot updates to this URL.
+- `/start` — Replies with "សួស្តី [Your Name]"
