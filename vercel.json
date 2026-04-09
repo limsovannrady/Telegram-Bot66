@@ -1,7 +1,4 @@
 {
-  "buildCommand": "npm install -g pnpm && pnpm install && pnpm --filter @workspace/username-checker run build",
-  "outputDirectory": "artifacts/username-checker/dist/public",
-  "installCommand": "npm install -g pnpm && pnpm install",
   "framework": null,
   "routes": [
     {
@@ -9,11 +6,8 @@
       "dest": "/api/webhook.py"
     },
     {
-      "handle": "filesystem"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/api/index.py"
     }
   ]
 }
