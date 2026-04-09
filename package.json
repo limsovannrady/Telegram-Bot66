@@ -1,0 +1,7 @@
+{
+  "name": "workspace",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter @workspace/username-checker run dev"
+  }
+}
