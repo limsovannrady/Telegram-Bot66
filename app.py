@@ -5,8 +5,8 @@ from flask import Flask, render_template_string
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
-PORT = int(os.environ.get("PORT", 5000))
+TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+PORT = int(os.environ.get("BOT_PORT", 3001))
 
 users = {}
 
@@ -197,6 +197,10 @@ def dashboard():
     return render_template_string(HTML, users=users)
 
 def run_bot():
+    if not TOKEN:
+        print("TELEGRAM_BOT_TOKEN not set — bot polling skipped.")
+        return
+
     async def _poll():
         bot_app = ApplicationBuilder().token(TOKEN).build()
         bot_app.add_handler(CommandHandler("start", start))

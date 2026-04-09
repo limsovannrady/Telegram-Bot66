@@ -31,12 +31,12 @@ name = "Telegram Bot"
 author = "agent"
 
 [workflows.workflow.metadata]
-outputType = "webview"
+outputType = "console"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python3 app.py"
-waitForPort = 8000
+args = "BOT_PORT=3001 python3 app.py"
+waitForPort = 3001
 
 [agent]
 stack = "PNPM_WORKSPACE"
